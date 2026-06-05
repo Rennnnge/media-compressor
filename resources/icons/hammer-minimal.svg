@@ -1,0 +1,34 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="132" y1="86" x2="900" y2="922" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset=".45" stop-color="#EAF6FF"/>
+      <stop offset="1" stop-color="#4BA8FF"/>
+    </linearGradient>
+    <linearGradient id="tile" x1="236" y1="226" x2="754" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".78"/>
+      <stop offset="1" stop-color="#C7E7FF" stop-opacity=".4"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="337" y1="233" x2="740" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#283447"/>
+      <stop offset="1" stop-color="#0D1728"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="450" y1="430" x2="742" y2="816" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#37B0FF"/>
+      <stop offset="1" stop-color="#007AFF"/>
+    </linearGradient>
+    <filter id="shadow" x="50" y="46" width="930" height="940" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="40" stdDeviation="52" flood-color="#1C5C8D" flood-opacity=".2"/>
+    </filter>
+  </defs>
+  <rect x="78" y="78" width="868" height="868" rx="210" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="190" y="188" width="644" height="644" rx="158" fill="url(#tile)" stroke="white" stroke-opacity=".62" stroke-width="2"/>
+  <path d="M584 198L751 365C767 381 767 407 751 423L684 490L430 236L497 169C513 153 539 153 555 169L584 198Z" fill="url(#dark)"/>
+  <path d="M406 260L660 514L600 574C585 589 561 589 546 574L346 374C331 359 331 335 346 320L406 260Z" fill="url(#dark)"/>
+  <path d="M464 353L289 528C275 542 275 565 289 579L327 617C341 631 364 631 378 617L553 442L464 353Z" fill="#56657A"/>
+  <path d="M303 602L218 687C190 715 190 761 218 789C246 817 292 817 320 789L405 704L303 602Z" fill="url(#dark)"/>
+  <path d="M624 609L666 522L705 611L802 601L732 668L760 762L674 716L591 765L611 669L538 605L624 609Z" fill="url(#blue)"/>
+  <path d="M622 609L666 522L705 611L802 601L732 668L760 762L674 716L591 765L611 669L538 605L622 609Z" stroke="white" stroke-width="18" stroke-linejoin="round" opacity=".72"/>
+  <path d="M612 271L724 383" stroke="#FFFFFF" stroke-width="23" stroke-linecap="round" opacity=".2"/>
+  <path d="M504 644H396M548 727H442M748 532L812 468" stroke="#0A84FF" stroke-width="24" stroke-linecap="round" opacity=".55"/>
+</svg>

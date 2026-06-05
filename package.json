@@ -1,0 +1,76 @@
+{
+  "name": "media-compressor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local image and video conversion/compression desktop app.",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "prototype": "python3 -m http.server 5173 -d src",
+    "dev": "vite --host 127.0.0.1",
+    "desktop": "electron .",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "verify:media": "node scripts/verify-media.mjs",
+    "prepare:ffmpeg": "node scripts/prepare-ffmpeg.mjs",
+    "generate:icon": "node scripts/generate-app-icon.mjs",
+    "dist:mac": "npm run build && npm run generate:icon && npm run prepare:ffmpeg && electron-builder --mac dmg dir"
+  },
+  "build": {
+    "appId": "com.rennnn.media-compressor",
+    "productName": "超级无敌图片视频压缩工具",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/ffmpeg",
+        "to": "ffmpeg"
+      }
+    ],
+    "mac": {
+      "icon": "resources/icons/app-icon.png",
+      "target": [
+        "dmg",
+        "dir"
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "contents": [
+        {
+          "x": 150,
+          "y": 180,
+          "type": "file"
+        },
+        {
+          "x": 420,
+          "y": 180,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "sharp": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "electron": "latest",
+    "electron-builder": "^26.8.1",
+    "typescript": "latest",
+    "vite": "latest"
+  }
+}

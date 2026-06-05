@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+release/
+*.dmg
+*.blockmap
+
+# Local generated binary resources
+resources/ffmpeg
+
+# Generated icon intermediates
+resources/icons/*.iconset/
+
+# macOS
+.DS_Store
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.*
