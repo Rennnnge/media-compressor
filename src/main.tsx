@@ -37,6 +37,7 @@ type OutputOption = {
 
 type MediaCompressorApi = {
   selectFiles: () => Promise<string[]>;
+  getDroppedFilePaths: (files: FileList) => string[];
   selectOutputDirectory: () => Promise<string | null>;
   openPath: (targetPath: string) => Promise<string>;
   processFiles: (payload: {
@@ -81,6 +82,20 @@ function getNameFromPath(filePath: string) {
 function getPreviewUrlFromPath(filePath: string, kind: MediaTask["kind"]) {
   if (kind === "未知") return undefined;
   return `file://${encodeURI(filePath)}`;
+}
+
+function createTaskFromPath(filePath: string): MediaTask {
+  const kind = getKindFromPath(filePath);
+  return {
+    id: `${filePath}-${crypto.randomUUID()}`,
+    name: getNameFromPath(filePath),
+    kind,
+    size: 0,
+    path: filePath,
+    previewUrl: getPreviewUrlFromPath(filePath, kind),
+    progress: 0,
+    status: "waiting"
+  };
 }
 
 function getOutputOptions(kind: MediaTask["kind"] | null): OutputOption[] {
@@ -267,16 +282,7 @@ function App() {
     }
 
     const filePaths = await window.mediaCompressor.selectFiles();
-    const nextTasks = filePaths.map((filePath) => ({
-      id: `${filePath}-${crypto.randomUUID()}`,
-      name: getNameFromPath(filePath),
-      kind: getKindFromPath(filePath),
-      size: 0,
-      path: filePath,
-      previewUrl: getPreviewUrlFromPath(filePath, getKindFromPath(filePath)),
-      progress: 0,
-      status: "waiting" as const
-    }));
+    const nextTasks = filePaths.map(createTaskFromPath);
 
     addTasks(nextTasks);
   }
@@ -290,6 +296,17 @@ function App() {
   function handleDrop(event: DragEvent<HTMLDivElement>) {
     event.preventDefault();
     setDragging(false);
+
+    if (window.mediaCompressor) {
+      const filePaths = window.mediaCompressor.getDroppedFilePaths(event.dataTransfer.files);
+      if (filePaths.length === 0) {
+        setToast("拖拽文件读取失败，请用选择文件添加");
+        return;
+      }
+      addTasks(filePaths.map(createTaskFromPath));
+      return;
+    }
+
     addFiles(event.dataTransfer.files);
   }
 
@@ -389,7 +406,7 @@ function App() {
           <div className="brand-mark" aria-hidden="true">↧</div>
 
           <div className="header-copy">
-            <h1>超级无敌图片视频压缩工具</h1>
+            <h1>可爱鸭</h1>
             <p>批量处理图片与视频，格式变对，体积变小，文件只留在本地。</p>
           </div>
 

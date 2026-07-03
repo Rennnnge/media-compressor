@@ -18,7 +18,7 @@
   },
   "build": {
     "appId": "com.rennnn.media-compressor",
-    "productName": "超级无敌图片视频压缩工具",
+    "productName": "可爱鸭",
     "directories": {
       "output": "release"
     },

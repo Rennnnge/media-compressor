@@ -58,7 +58,7 @@ function createWindow() {
     height: 820,
     minWidth: 900,
     minHeight: 680,
-    title: "Media Compressor",
+    title: "可爱鸭",
     backgroundColor: "#e8edf3",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
