@@ -38,6 +38,7 @@ type OutputOption = {
 type MediaCompressorApi = {
   selectFiles: () => Promise<string[]>;
   getDroppedFilePaths: (files: FileList) => string[];
+  onFileDrop?: (callback: (filePaths: string[]) => void) => () => void;
   selectOutputDirectory: () => Promise<string | null>;
   openPath: (targetPath: string) => Promise<string>;
   processFiles: (payload: {
@@ -234,6 +235,20 @@ function App() {
     }
     if (accepted.length > 0) setTasks((current) => [...current, ...accepted]);
   }
+
+  useEffect(() => {
+    if (!window.mediaCompressor?.onFileDrop) return;
+
+    return window.mediaCompressor.onFileDrop((filePaths) => {
+      setDragging(false);
+      if (filePaths.length === 0) {
+        setToast("拖拽文件读取失败，请用选择文件添加");
+        return;
+      }
+
+      addTasks(filePaths.map(createTaskFromPath));
+    });
+  }, [isSuccess, tasks]);
 
   function clearTasks() {
     revokeTaskPreviews(tasks);

@@ -31,19 +31,19 @@
 安装依赖：
 
 ```bash
-npm install
+pnpm install
 ```
 
 启动前端预览：
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 启动 Electron 桌面端：
 
 ```bash
-npm run desktop
+pnpm run desktop
 ```
 
 ## 真实压缩测试
@@ -51,7 +51,7 @@ npm run desktop
 项目内置了媒体处理验证脚本，会生成测试图片和测试视频，并验证压缩输出是否可用。
 
 ```bash
-npm run verify:media
+pnpm run verify:media
 ```
 
 ## 打包 macOS 安装包
@@ -65,7 +65,7 @@ ffmpeg -version
 生成 `.app` 和 `.dmg`：
 
 ```bash
-npm run dist:mac
+pnpm run dist:mac
 ```
 
 打包产物会生成在：
@@ -87,7 +87,7 @@ resources/icons/   应用图标资源
 
 ## 注意事项
 
-- `node_modules/` 不提交到仓库，克隆项目后运行 `npm install`
+- `node_modules/` 不提交到仓库，克隆项目后运行 `pnpm install`
 - `resources/ffmpeg` 是本机打包时复制的二进制文件，不提交到仓库
 - 图片和视频不要混合拖入，同一轮任务只处理一种媒体类型
 - macOS 首次打开未签名应用时，可能需要在系统设置中允许打开
